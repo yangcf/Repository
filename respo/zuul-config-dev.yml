@@ -1,0 +1,22 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+server:
+  port: 8769
+spring:
+  application:
+    name: mycloud-zuul
+zuul:
+  routes:
+    api-a:
+      path: /api-a/**
+      serviceId: SERVICE-RIBBON
+    api-b:
+      path: /api-b/**
+      serviceId: SERVICE-FEIGN
+    host:
+      maxTotalConnections: 10000
+      maxPerRouteConnections: 10000
+      semaphore:
+        max-semaphores: 200
